@@ -1,0 +1,13 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.collage{
+    height: 20vh;
+    width: 100%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 5vh;
+}

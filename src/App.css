@@ -1,0 +1,49 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.navbar{
+    height: 70px;
+    display: flex; 
+    justify-content: space-between; 
+     align-items: center;
+     border-bottom: 1px solid #ebebeb;
+     color: #333;
+}
+.logo{
+    font-weight: 700;
+}
+.navbar ul{
+    padding: 10px 30px;
+}
+.navbar ul li{
+     display: inline-flex;
+    padding: 5px 10px;
+    font-weight: 500;
+    /* color: #333; */
+}
+.navbar ul li:hover{
+    color: red;
+}
+.navbar button{
+    background-color: #333;
+    color: white;
+    padding: 12px 25px;
+    border: 0px;
+    border-radius: 25px;
+    outline: 0px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.about{
+    max-width: 1000px;
+    width: 100%;
+    margin:0px auto;
+}
+.navbar a{
+    color: black;
+}
+a.active{
+    color: red;
+    font-weight: 200;
+}

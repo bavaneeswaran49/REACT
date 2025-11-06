@@ -1,37 +1,56 @@
 import { useState } from 'react'
 import './App.css'
-import Navbars from './components/navbar.jsx'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Route, Routes } from 'react-router-dom';
-import Home from './pages/home.jsx';
-import Products from './pages/products.jsx';
-import Blog from './pages/blog.jsx';
-import About from './pages/about.jsx';
-import Login from './pages/login.jsx';
-import Dropdown from './pages/dropdown.jsx';
-import Dropdown1 from './pages/ddown1.jsx';
-import Dropdown2 from './pages/ddown2.jsx';
-import Dropdown3 from './pages/ddown3.jsx';
+import React from 'react'
 function App() {
-  const [count, setCount] = useState(0)
+  const [height, setheight] = useState("");
+  const [weight, setweight] = useState("");
+  const [bmi, setbmi] = useState(null);
+  const [bmistatus, setBmistatus] = useState("");
+  const calculateBmi = () => {
+    if (height && weight) {
+      const heightInMeters = height / 100;
+      const bmiValue = weight / (heightInMeters * heightInMeters);
+      setbmi(bmiValue.toFixed(2));
+      if (bmiValue < 18.5) {
+        setBmistatus("Underweight");
+      }
+      else if (bmiValue >= 18.5 && bmiValue < 24.9) {
+        setBmistatus("Normal weight");
+      }
+      else if (bmiValue >= 25 && bmiValue < 29.9) {
+        setBmistatus("over weight");
+      }
+      else {
+        setBmistatus("Abnormal");
+      }
+    } else
+      setbmi(null);
+    // setBmistatus("");
 
+  }
   return (
     <>
-      <Navbars />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path='/Blog' element={<Blog />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/Dropdown" element={<Dropdown />} />
-        <Route path='/dropdown1' element={<Dropdown1 />} />
-        <Route path='/dropdown2' element={<Dropdown2 />} />
-        <Route path='/dropdown3' element={<Dropdown3 />} />
-      </Routes>
+      <div className="BMI">
+        {/* <div className='box'></div> */}
+        <div className='data'>
+          <h1>Body Mass Index Calculator</h1>
+          <div className='input-container'>
+            <lable className="i">Height (cm):</lable>
+            <input type="text" value={height} id='height' onChange={(e) => setheight(e.target.value)} />
+          </div>
+          <div className='input-container'>
+            <lable className="i">Weight (kg):</lable>
+            <input type="text" value={weight} onChange={(e) => setweight(e.target.value)} id='weight' />
+          </div>
+          <button onClick={calculateBmi} >Calculate BMI</button>
+          {bmi !== null && (
+            <div className='result'>
+              <p>Your BMI is:{bmi}</p>
+              <p>Status: {bmistatus}</p>
+            </div>)}
+        </div>
+      </div>
     </>
   )
 }
-
-export default App
+export default App;
